@@ -55,8 +55,8 @@
     <!-- Attach dialogs for consent choices -->
     {% include "dialogs.liquid" %}
 
-    <!-- Dynamically show the dialogs for non-SSR pages -->
     {% unless page.url == "/ssr.html" %}
+      <!-- Dynamically show the dialogs for non-SSR pages -->
       {% include "javascript-based-visibility" %}
     {% endunless %}
 
