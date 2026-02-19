@@ -1,0 +1,35 @@
+<script>
+  (async () => {
+    // don't intercept submission if we're changing consent choices, to allow the form to submit and set cookies as normal
+    const forceDisplay = await cookieStore.get("consent-force");
+    if (forceDisplay) return;
+
+    // listen for consent submission via the Navigation API
+    window.navigation.addEventListener("navigate", navigateEvent => {
+      // only intercept form submissions
+      if (!navigateEvent.canIntercept || !navigateEvent.formData) return;
+
+      // parse our destination URL
+      const url = new URL(navigateEvent.destination.url);
+
+      // we only care about our consent endpoint
+      if (url.pathname === "/consent") {
+        requestAnimationFrame(async () => {
+          // close our dialogs first
+          document.querySelectorAll(".consent-dialog").forEach(dialog => dialog.close());
+          // then submit the form data to the server
+          await fetch(url, {
+            method: "POST",
+            body: navigateEvent.formData,
+            // prevent all use of our cache
+            cache: "no-store",
+            // prevent the browser from following the redirect returned for hard navigations
+            redirect: "manual"
+          });
+        })
+        // we didn't actually intercept the navigation, given we don't technically want one
+        navigateEvent.preventDefault();
+      }
+    });
+  })();
+</script>

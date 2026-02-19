@@ -1,0 +1,41 @@
+<dialog class="consent-dialog" id="consent-banner">
+  <p>We use cookies, do you want cookies too?</p>
+
+  <button type="button" command="show-modal" commandfor="consent-options" id="customise-btn">
+    Customise choices
+  </button>
+
+  <button type="submit" form="consent-options-form" name="action" value="accept-all" id="accept-all-btn">
+    Accept all the cookies!
+  </button>
+</dialog>
+
+<dialog class="consent-dialog" id="consent-options">
+  <p>What cookies do you want?</p>
+  <form method="post" action="/consent" id="consent-options-form">
+    <label>
+      <input type="checkbox" checked disabled>
+      Required Cookies
+    </label>
+
+    <label>
+      <input type="checkbox" name="consent-analytics" value="true" checked>
+      Analytics Cookies
+    </label>
+
+    <label>
+      <input type="checkbox" name="consent-marketing" value="true" checked>
+      Marketing Cookies
+    </label>
+
+    <footer>
+      <button type="submit" name="action" value="reject-all" id="reject-all-btn">
+        Reject all
+      </button>
+
+      <button type="submit" id="save-choices-btn">
+        Save choices
+      </button>
+    </footer>
+  </form>
+</dialog>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" />
+
+    <title>Cookie Consent Banner Example &ndash; Lessons of a CTO</title>
+
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        padding: 1rem;
+      }
+
+      dialog {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 1000;
+        width: calc(100vw - 2rem);
+        max-width: 500px;
+        margin-inline: auto;
+
+        border: 2px solid #000;
+        border-bottom: 0;
+        padding: 1rem;
+      }
+
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      #consent-options {
+        label { display: block }
+        footer { margin-top: 1rem }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/ssr.html">SSR page</a>
+      <a href="/change.html">Change consent choices</a>
+    </nav>
+
+    <h1>Cookie Consent Banner Example</h1>
+    <p>Read all about this approach on <a href="https://lessonsofacto.com/articles/006-taming-the-cookie-consent-monster/">Lessons of a CTO</a>.</p>
+
+    {{ content }}
+
+    <!-- Attach Navigation API interception for consent form submissions -->
+    {% include "javascript-form-intercept.liquid" %}
+
+    <!-- Attach dialogs for consent choices -->
+    {% include "dialogs.liquid" %}
+
+    <!-- Dynamically show the dialogs for non-SSR pages -->
+    {% unless page.url == "/ssr.html" %}
+      {% include "javascript-based-visibility" %}
+    {% endunless %}
+
+    <!-- Load any scripts that should run after consent is given -->
+    <script src="/scripts/post-consent.js" type="module" defer></script>
+  </body>
+</html>

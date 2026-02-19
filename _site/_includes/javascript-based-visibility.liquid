@@ -1,0 +1,20 @@
+<script>
+// we have to wrap our code in an async IIFE in order to use `await`
+(async () => {
+  const consentNecessary = "false" !== (await cookieStore.get("consent-necessary"))?.value;
+  const hasConsent = await cookieStore.get("consent-timestamp");
+  const forceDisplay = await cookieStore.get("consent-force");
+
+  // if we're forcing display to modify choices, show the (second) options dialog
+  if (forceDisplay) {
+    requestAnimationFrame(() => {
+      document.getElementById("consent-options").showModal();
+    });
+  // if we need consent and don't have it, show the (first) banner dialog
+  } else if ((consentNecessary && !hasConsent)) {
+    requestAnimationFrame(() => {
+      document.getElementById("consent-banner").show();
+    });
+  }
+})();
+</script>

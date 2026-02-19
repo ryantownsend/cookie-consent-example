@@ -1,0 +1,9 @@
+[dev]
+  publish = "dist"
+  command = "npm start"
+  targetPort = 7070
+  port = 7777
+
+[build]
+  publish = "dist"
+  command = "npm run build"

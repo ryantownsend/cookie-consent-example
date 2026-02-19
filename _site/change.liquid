@@ -1,0 +1,18 @@
+---
+permalink: /change.html
+layout: base
+---
+
+<form action="/remove-consent" method="post">
+  <button type="submit">
+    Remove consent
+  </button>
+</form>
+
+<form action="/modify-consent" method="post">
+  <button type="submit">
+    Change consent choices
+  </button>
+</form>
+
+{% include "javascript-based-visibility" %}
