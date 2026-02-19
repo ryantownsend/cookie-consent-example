@@ -33,6 +33,6 @@ export default async (request: Request, context: Context) => {
 
 // only match on SSR'd page
 export const config: Config = {
-  path: "/ssr.html",
+  path: "/ssr",
   method: "GET"
 };
