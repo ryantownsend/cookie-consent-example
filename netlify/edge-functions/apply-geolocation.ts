@@ -1,3 +1,9 @@
+// this edge function simply performs a geolocation lookup and determines whether the country is in the EU/UK
+// it writes the result to a cookie in the response
+//
+// for Fastly you can use client.geo.country_code in VCL
+// for Cloudflare you can use request.cf.country in Workers
+
 import { Config, Context } from "https://edge.netlify.com";
 
 const consentCountries = [ "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "EL", "ES", "FI", "FR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "GB" ]

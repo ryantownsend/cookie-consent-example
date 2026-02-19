@@ -1,3 +1,11 @@
+{% comment %}
+This file contains the HTML for our two consent dialogs, which are hidden by default and shown as necessary.
+
+Ideally, they should have `open` applied by an edge function (see apply-transformation.ts) to avoid any delay on rendering.
+But I've included a client-side implementation in javascript-based-visibility.liquid too.
+
+Note: the buttons below have `id` attributes not for functionality but to make them better labelled in RUM performance data.
+{% endcomment %}
 <dialog class="consent-dialog" id="consent-banner">
   <p>We use cookies, do you want cookies too?</p>
 

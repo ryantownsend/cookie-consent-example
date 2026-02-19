@@ -1,10 +1,17 @@
+// this edge function reads our cookies and conditionally adds an `open` attribute to our consent `<dialog>` elements
+//
+// if `consent-force` is set (by the modify-consent.ts edge function), then we show the (second) choices dialog
+// if `consent-necessary` is true but we don't have a `consent-timestamp`, then we show the (first) banner dialog
+//
+// if you don't have the ability to do this in your CDN you could use the JavaScript-based approach in `_site/_includes/_javascript-based-visibility.liquid`
+
 import type { Config, Context } from "@netlify/edge-functions";
 import { HTMLRewriter } from "https://ghuc.cc/worker-tools/html-rewriter/index.ts";
 
 export default async (request: Request, context: Context) => {
   console.log("Applying transformation to SSR page");
 
-  const response = await context.next();
+  const originalResponse = await context.next();
   const rewriter = new HTMLRewriter();
 
   // if we have the force flag set, show the (second) choices dialog
@@ -25,10 +32,10 @@ export default async (request: Request, context: Context) => {
     });
   // no transformation necessary, return original response early
   } else {
-    return response
+    return originalResponse;
   }
 
-  return rewriter.transform(response);
+  return rewriter.transform(originalResponse);
 };
 
 // only match on SSR'd page

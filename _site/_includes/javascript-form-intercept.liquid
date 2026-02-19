@@ -1,3 +1,13 @@
+{% comment %}
+This script intercepts submission of our consent form, simply to prevent a hard-navigation.
+
+It doesn't intercept when we're changing consent choices, because the resulting choices might mean we need to unload existing third-parties
+and rather than doing that dynamically with a bunch of JavaScript logic, it's much simpler to simply allow a hard navigation so
+the fresh page load simply doesn't load the now unconsented third-party scripts.
+
+We want this script to load promptly to increase the likelihood that we can intercept the form submission, hence why I've inlined it.
+Ultimately, it's only ~600 bytes when gzipped so the overhead is very minimal.
+{% endcomment %}
 <script>
   (async () => {
     // don't intercept submission if we're changing consent choices, to allow the form to submit and set cookies as normal

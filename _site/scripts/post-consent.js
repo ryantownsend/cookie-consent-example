@@ -1,5 +1,3 @@
-//
-
 // we have to wrap our code in an async IIFE in order to use `await`
 (async () => {
   // our 'fake' function that only executes if consent is set

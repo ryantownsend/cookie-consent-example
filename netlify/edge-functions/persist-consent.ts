@@ -1,3 +1,10 @@
+// this edge function is the endpoint that our consent choices form and accept-/reject-all buttons post to
+// this could just as easily be done in your origin server
+//
+// the response is a redirect back to the referring page (or homepage if there's no referrer) for a hard navigation
+// but the idea is that we intercept the form submission and use fetch instead, meaning the page won't reload
+// the nice thing is that the progressive enhancement is achieved through the same back-end code path with no conditional logic
+
 import { Config, Context } from "https://edge.netlify.com";
 
 const consentKeys = ["consent-analytics", "consent-marketing"]

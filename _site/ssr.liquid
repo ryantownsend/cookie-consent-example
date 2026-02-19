@@ -3,4 +3,5 @@ permalink: /ssr.html
 layout: base
 ---
 
-<p>This is the SSR'd page where the consent banner has <code>open</code> added server-side.</p>
+<p>This is the SSR'd page where the consent banner has <code>open</code> added server-side via an edge function.</p>
+<p>This should be more optimal for performance than using a client-side JavaScript solution, but of course it has overheads (namely cost) and you'll need to ensure you either have sufficient traffic or cold-start worker performance is good enough.</p>

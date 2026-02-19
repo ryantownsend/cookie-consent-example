@@ -1,3 +1,12 @@
+{% comment %}
+This script is a client-side alternative to the apply-transformation.ts edge function
+for those who don't have the ability to modify HTML at the edge, or where costs/edge-performance doesn't permit.
+
+You want to minimise the time between TTFB and showing the relevant banner,
+so this script should be inlined in the page immediately after the dialogs in the HTML.
+
+It's only ~370 bytes when gzipped, and that's with the comments and without any minification.
+{% endcomment %}
 <script>
 // we have to wrap our code in an async IIFE in order to use `await`
 (async () => {
