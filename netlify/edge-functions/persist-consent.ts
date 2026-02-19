@@ -10,9 +10,9 @@ export default async (request: Request, context: Context) => {
   const formData = await request.formData()
   let cookies = {}
 
-  if ("reject-all" === formData.has("action")) {
+  if ("reject-all" === formData.get("action")) {
     consentKeys.forEach(key => { cookies[key] = false })
-  } else if ("accept-all" === formData.has("action")) {
+  } else if ("accept-all" === formData.get("action")) {
     consentKeys.forEach(key => { cookies[key] = true })
   } else {
     consentKeys.forEach(key => { cookies[key] = ("true" === formData.get(key)) })
