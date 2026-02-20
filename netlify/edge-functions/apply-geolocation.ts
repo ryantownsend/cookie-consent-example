@@ -8,6 +8,7 @@ import { Config, Context } from "https://edge.netlify.com";
 
 const consentCountries = [ "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "EL", "ES", "FI", "FR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "GB" ]
 
+// `request: Request` is necessary, otherwise `context.next()` breaks 🤷‍♂️
 export default async (request: Request, context: Context) => {
   console.log("Applying geolocation data to cookies", context?.geo?.country?.code);
   // if we don't have geolocation data, we have to assume consent is necessary

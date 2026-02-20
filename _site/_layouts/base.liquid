@@ -36,6 +36,10 @@
         label { display: block }
         footer { margin-top: 1rem }
       }
+
+      cookie-based-checkbox {
+        display: contents;
+      }
     </style>
   </head>
   <body>
@@ -56,12 +60,14 @@
     <!-- Attach dialogs for consent choices -->
     {% include "dialogs.liquid" %}
 
+    <!-- Load any scripts that should run after consent is given -->
+    <script src="/scripts/post-consent.js" type="module" defer></script>
+
     {% unless page.url == "/ssr.html" %}
       <!-- Dynamically show the dialogs for non-SSR pages -->
       {% include "javascript-based-visibility" %}
+      <!-- Repopulate checkbox values from the cookie -->
+      <script src="/scripts/cookie-based-checkbox.js" type="module" defer></script>
     {% endunless %}
-
-    <!-- Load any scripts that should run after consent is given -->
-    <script src="/scripts/post-consent.js" type="module" defer></script>
   </body>
 </html>

@@ -5,8 +5,8 @@
     const notice = document.createElement("p");
     notice.innerHTML = `
       <strong>Consent has been set:</strong> <small>(this message is added by the callback)</small><br />
-      Marketing = ${(await cookieStore.get("consent-marketing"))?.value || "false"}<br />
-      Analytics = ${(await cookieStore.get("consent-analytics"))?.value || "false"}
+      Analytics = ${(await cookieStore.get("consent-analytics"))?.value || "false"}<br />
+      Marketing = ${(await cookieStore.get("consent-marketing"))?.value || "false"}
     `;
     document.body.appendChild(notice);
   }
