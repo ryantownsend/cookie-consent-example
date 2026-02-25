@@ -9,6 +9,10 @@
     <title>Performant Cookie Consent Banner Example &ndash; Lessons of a CTO</title>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         font-family: system-ui, sans-serif;
         line-height: 1.5;
@@ -26,6 +30,10 @@
         border: 2px solid #000;
         border-bottom: 0;
         padding: 1rem;
+
+        p {
+          margin-block: 0 1lh;
+        }
       }
 
       dialog::backdrop {
@@ -33,7 +41,27 @@
       }
 
       #consent-options {
-        label { display: block }
+        div {
+          display: grid;
+          grid-template-columns: max-content auto;
+          align-items: center;
+          column-gap: 0.5rem;
+
+          + div {
+            margin-top: 0.5lh;
+          }
+        }
+        label {
+          display: contents;
+        }
+        label:not(label:has(input:disabled)),
+        summary {
+          cursor: pointer;
+        }
+        details {
+          grid-column: 2;
+          font-size: 0.8em;
+        }
         footer { margin-top: 1rem }
       }
 

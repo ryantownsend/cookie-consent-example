@@ -21,24 +21,42 @@ Note: the buttons below have `id` attributes not for functionality but to make t
 <dialog class="consent-dialog" id="consent-options">
   <p>What cookies do you want?</p>
   <form method="post" action="/consent" id="consent-options-form">
-    <label>
-      <input type="checkbox" checked disabled>
-      Required Cookies
-    </label>
+    <div>
+      <label>
+        <input type="checkbox" checked disabled>
+        Required Cookies
+      </label>
+      <details>
+        <summary>Details</summary>
+        Detailed information about these cookies
+      </details>
+    </div>
 
-    <label>
-      <cookie-based-checkbox>
-        <input type="checkbox" name="consent-analytics" value="true" checked>
-      </cookie-based-checkbox>
-      Analytics Cookies
-    </label>
+    <div>
+      <label>
+        <cookie-based-checkbox>
+          <input type="checkbox" name="consent-analytics" value="true" checked autofocus>
+        </cookie-based-checkbox>
+        Analytics Cookies
+      </label>
+      <details>
+        <summary>Details</summary>
+        Detailed information about these cookies
+      </details>
+    </div>
 
-    <label>
-      <cookie-based-checkbox>
-        <input type="checkbox" name="consent-marketing" value="true" checked>
-      </cookie-based-checkbox>
-      Marketing Cookies
-    </label>
+    <div>
+      <label>
+        <cookie-based-checkbox>
+          <input type="checkbox" name="consent-marketing" value="true" checked>
+        </cookie-based-checkbox>
+        Marketing Cookies
+      </label>
+      <details>
+        <summary>Details</summary>
+        Detailed information about these cookies
+      </details>
+    </div>
 
     <footer>
       <button type="submit" name="action" value="reject-all" id="reject-all-btn">
