@@ -6,7 +6,9 @@
 
 import { Config, Context } from "https://edge.netlify.com";
 
-const consentCountries = [ "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "EL", "ES", "FI", "FR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "GB" ]
+// for the purpose of the demo, I've added US/Canada/Australia/New Zealand to the list EU+UK countries
+// if you're outside of these, you'll need to use a VPN or test with something like WebPageTest.org
+const consentCountries = [ "US", "CA", "AU", "NZ", "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "EL", "ES", "FI", "FR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "GB" ]
 
 // `request: Request` is necessary, otherwise `context.next()` breaks 🤷‍♂️
 export default async (request: Request, context: Context) => {
